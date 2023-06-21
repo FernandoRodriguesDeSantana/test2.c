@@ -12,8 +12,8 @@ float convert(float n){
 
 int main(){
     FILE *arch;
-    int i, num[20], crossed = 0, max = 100, total_speed = 0;
-    float average_speed = 0, aux = 0;
+    int i, num[20], crossed = 0, max = 100;
+    float average_speed = 0, aux = 0, total_speed = 0;
 
     //testing the file "speed.txt" opening
     arch = fopen("speed.txt", "r"); 
@@ -36,7 +36,6 @@ int main(){
     }
     printf("}");
 
-
     //analyzing how many values ​​exceed the speed limit of 100 km/h and calculating the total speed
     for(i = 0; i < 20; i++){
         if(num[i] > max){
@@ -44,7 +43,7 @@ int main(){
         }
         total_speed = total_speed + num[i];
     }
-    printf("\n\nIn total %d cars exceed the speed limit of 100 km/h", crossed);
+    printf("\n\nIn total %.2f cars exceed the speed limit of 100 km/h", crossed);
 
     //calculating and printing the average speed
     average_speed = total_speed / 20;
