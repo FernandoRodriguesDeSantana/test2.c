@@ -9,9 +9,9 @@ struct athlete{
 };
 
 int main(){
-    struct athlete info[10];
     FILE *archive;
-    int i;
+    int i, p = 10;
+    struct athlete info[p];
 
     //testing the file opening
     archive = fopen("atlhete_info.txt", "w");
@@ -21,10 +21,10 @@ int main(){
     else{
         printf("\nSUCESS! The file has been opened.");
     }
-    
+
     //storing the information in the structure
     printf("\n\n    --+=+--WELCOME TO ATLHETE INFO INTERFACE--+=+--    ");
-    for(i = 0; i < 10; i++){
+    for(i = 0; i < p; i++){
         printf("\n\nFor the atlhete number %d:", i+1);
 
         printf("\n\n >Enter the atlhete name: ");
@@ -45,14 +45,25 @@ int main(){
 
         printf("\n--+=+--+=+--+=+--+=+--+=+--+=+--+=+--+=+--");
     }
-    
+
+
     //writing the information stored in the structure to a text file
-    for(i = 0; i < 10; i++){
-        fwrite(&info[i], sizeof(struct athlete), 1, archive);
+    for(i = 0; i < p; i++){
+        fprintf(archive, "--+=+--ATLHETE INFORMATION--+=+--");
+        fprintf(archive, "\n");
+        fprintf(archive, "Name: %s", info[i].name);
+        fprintf(archive, "\n");
+        fprintf(archive, "Sport: %s", info[i].sport);
+        fprintf(archive, "\n");
+        fprintf(archive, "Age: %d", info[i].age);
+        fprintf(archive, "\n");
+        fprintf(archive, "\n");
+        fprintf(archive, "Height: %.2f", info[i].height);
+        fprintf(archive, "\n");
+        fprintf(archive, "\n");
     }
 
     fclose(archive);
-
 
     return 0;
 }
